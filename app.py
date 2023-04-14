@@ -13,7 +13,8 @@ def load_model():
     return model
 
 
-INDEX_TO_CLASS = {0: 'cardboard', 1: 'glass', 2: 'metal', 3: 'paper', 4: 'plastic', 5: 'trash'}
+INDEX_TO_CLASS = {0: 'cardboard', 1: 'glass', 2: 'metal',
+                  3: 'organic', 4: 'paper', 5: 'plastic', 6: 'trash'}
 
 def callback_predict(frame):
     pic = frame.to_ndarray(format='rgb24')
