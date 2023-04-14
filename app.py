@@ -34,41 +34,6 @@ def callback_predict(frame):
                       fontScale, color, thickness, cv2.LINE_AA)
     return av.VideoFrame.from_ndarray(pic)
 
-
-# def random_images():
-#     path_o = './DATA/O'
-#     file = np.random.choice(os.listdir(path_o))
-#     pic_o = cv2.imread(os.path.join(path_o, file))
-
-#     path_r = './DATA/R'
-#     file = np.random.choice(os.listdir(path_r))
-#     pic_r = cv2.imread(os.path.join(path_r, file))
-
-#     pic_o = cv2.cvtColor(pic_o, cv2.COLOR_BGR2RGB)
-#     pic_r = cv2.cvtColor(pic_r, cv2.COLOR_BGR2RGB)
-#     copy_o = cv2.resize(pic_o, (128, 128)) / 255
-#     copy_r = cv2.resize(pic_r, (128, 128)) / 255
-
-#     pred_o = model.predict(copy_o.reshape(1, 128, 128, 3), verbose=0)
-#     pred_r = model.predict(copy_r.reshape(1, 128, 128, 3), verbose=0)
-
-#     col1, col2 = st.columns(2)
-#     with col1:
-#         pred_class = 'Recyclable' if pred_o >= THRESHOLD else 'Organic'
-#         proba = pred_o if pred_o >= THRESHOLD else 1-pred_o
-#         st.markdown('%s: %.2f%%' % (pred_class, proba[0][0] * 100))
-
-#         pic_o = cv2.resize(pic_o, (512, 512))
-#         st.image(pic_o, caption="Organic")
-
-#     with col2:
-#         pred_class = 'Recyclable' if pred_r >= THRESHOLD else 'Organic'
-#         proba = pred_r if pred_r >= THRESHOLD else 1-pred_r
-#         st.markdown('%s: %.2f%%' % (pred_class, proba[0][0] * 100))
-
-#         pic_r = cv2.resize(pic_r, (512, 512))
-#         st.image(pic_r, caption="Recyclable")
-
 def random_images():
     url = './dataset-resized/'
 
