@@ -53,7 +53,8 @@ def random_images():
             return pic, label, probability
     
     TYPES = list(INDEX_TO_CLASS.values())
-    col1, col2 = st.columns(2)
+
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         type1 = np.random.choice(TYPES)
         pic1, label1, probability1 = random_choice(type1)
@@ -70,6 +71,22 @@ def random_images():
 
         pic2 = cv2.resize(pic2, (512, 512))
         st.image(pic2, caption=type2.capitalize())
+    with col3:
+        type3 = np.random.choice(TYPES)
+        pic3, label3, probability3 = random_choice(type3)
+
+        st.markdown(f'{label3}: {probability3 * 100 : .2f}%')
+
+        pic3 = cv2.resize(pic3, (512, 512))
+        st.image(pic3, caption=type3.capitalize())
+    with col4:
+        type4 = np.random.choice(TYPES)
+        pic4, label4, probability4 = random_choice(type4)
+
+        st.markdown(f'{label4}: {probability4 * 100 : .2f}%')
+        
+        pic4 = cv2.resize(pic4, (512, 512))
+        st.image(pic4, caption=type4.capitalize())
 
 
 model = load_model()
