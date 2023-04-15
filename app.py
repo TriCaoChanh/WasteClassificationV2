@@ -28,7 +28,7 @@ def callback_predict(frame):
     font = cv2.FONT_HERSHEY_SIMPLEX
     org = (50, 50)
     fontScale = 1
-    color = (255, 0, 0)
+    color = (255, 50, 50)
     thickness = 2
     pic = cv2.putText(pic, '%s: %.2f%%' % (label, probability * 100), org, font,
                       fontScale, color, thickness, cv2.LINE_AA)
@@ -53,23 +53,31 @@ def random_images():
             return pic, label, probability
     
     TYPES = list(INDEX_TO_CLASS.values())
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        type1 = np.random.choice(TYPES)
-        pic1, label1, probability1 = random_choice(type1)
+        type = np.random.choice(TYPES)
+        pic, label, probability = random_choice(type)
 
-        st.markdown(f'{label1}: {probability1 * 100 : .2f}%')
+        st.markdown(f'{label}: {probability * 100 : .2f}%')
 
-        pic1 = cv2.resize(pic1, (512, 512))
-        st.image(pic1, caption=type1.capitalize())
+        pic = cv2.resize(pic, (512, 512))
+        st.image(pic, caption=type.capitalize())
     with col2:
-        type2 = np.random.choice(TYPES)
-        pic2, label2, probability2 = random_choice(type2)
+        type = np.random.choice(TYPES)
+        pic, label, probability = random_choice(type)
 
-        st.markdown(f'{label2}: {probability2 * 100 : .2f}%')
+        st.markdown(f'{label}: {probability * 100 : .2f}%')
 
-        pic2 = cv2.resize(pic2, (512, 512))
-        st.image(pic2, caption=type2.capitalize())
+        pic = cv2.resize(pic, (512, 512))
+        st.image(pic, caption=type.capitalize())
+    with col3:
+        type = np.random.choice(TYPES)
+        pic, label, probability = random_choice(type)
+
+        st.markdown(f'{label}: {probability * 100 : .2f}%')
+
+        pic = cv2.resize(pic, (512, 512))
+        st.image(pic, caption=type.capitalize())
 
 
 model = load_model()
