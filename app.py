@@ -9,7 +9,7 @@ from streamlit_webrtc import webrtc_streamer
 
 @st.cache_resource
 def load_model():
-    model = keras.models.load_model('./waste_classifier_v2')
+    model = keras.models.load_model('./waste_clf_v2')
     return model
 
 
@@ -106,7 +106,6 @@ elif mode == 'Import Images':
         st.image(pic, caption="Uploaded Image")
 elif mode == 'Camera':
     webrtc_streamer(key="example", video_frame_callback=callback_predict)
-    # access_camera()
 
 
 st.markdown('---------------------------------------------------------------')
