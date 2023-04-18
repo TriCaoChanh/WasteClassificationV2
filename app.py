@@ -52,32 +52,24 @@ def random_images():
 
             return pic, label, probability
     
-    TYPES = list(INDEX_TO_CLASS.values())
+    def predict():
+        TYPES = list(INDEX_TO_CLASS.values())
+        type = np.random.choice(TYPES)
+        pic, label, probability = random_choice(type)
+
+        st.markdown(f'{label}: {probability * 100 : .2f}%')
+
+        pic = cv2.resize(pic, (512, 512))
+        st.image(pic, caption=type.capitalize())
+
+    
     col1, col2, col3 = st.columns(3)
     with col1:
-        type = np.random.choice(TYPES)
-        pic, label, probability = random_choice(type)
-
-        st.markdown(f'{label}: {probability * 100 : .2f}%')
-
-        pic = cv2.resize(pic, (512, 512))
-        st.image(pic, caption=type.capitalize())
+        predict()
     with col2:
-        type = np.random.choice(TYPES)
-        pic, label, probability = random_choice(type)
-
-        st.markdown(f'{label}: {probability * 100 : .2f}%')
-
-        pic = cv2.resize(pic, (512, 512))
-        st.image(pic, caption=type.capitalize())
+        predict()
     with col3:
-        type = np.random.choice(TYPES)
-        pic, label, probability = random_choice(type)
-
-        st.markdown(f'{label}: {probability * 100 : .2f}%')
-
-        pic = cv2.resize(pic, (512, 512))
-        st.image(pic, caption=type.capitalize())
+        predict()
 
 
 model = load_model()
@@ -86,6 +78,7 @@ st.title('Waste Classification App')
 st.markdown('Portable AI classifier can be integrated into small-size cameras with accuracy over 90% identifying waste images.')
 st.markdown('---------------------------------------------------------------')
 
+st.markdown('**7 types of waste:** _Carboard, Glass, Metal, Organic, Paper, Plastic, and Trash_')
 
 mode = st.sidebar.selectbox(
     'Mode', ['Random Images', 'Import Images', 'Camera'])
